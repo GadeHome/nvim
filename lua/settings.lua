@@ -29,6 +29,7 @@ opt.so=999                          -- Курсор всегда в центре
 opt.undofile = true                 -- Возможность отката назад
 opt.splitright = true               -- vertical split вправо
 opt.splitbelow = true               -- horizontal split вниз
+opt.guifont='FiraCode Nerd Font Mono' -- установка шрифта
 -----------------------------------------------------------
 -- Цветовая схема
 -----------------------------------------------------------

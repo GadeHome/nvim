@@ -2,7 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
     -- Packer сам себя
-    use 'wbthomason/packer.nvim'
+    use {'wbthomason/packer.nvim', opt=true}
 
     -----------------------------------------------------------
     -- ПЛАГИНЫ ВНЕШНЕГО ВИДА
@@ -29,12 +29,14 @@ return require('packer').startup(function()
     -- Файловый менеджер
     use { 'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
+    cmd = {'NvimTreeToggle', 'NvimTreeFocus'},
     config = function() require'nvim-tree'.setup {} end, }
     -- Навигация внутри файла по классам и функциям
     use 'majutsushi/tagbar'
     -- Замена fzf и ack
     use { 'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
+    cmd = 'Telescope',
     config = function() require'telescope'.setup {} end, }
 
 
@@ -111,4 +113,14 @@ return require('packer').startup(function()
     use 'dense-analysis/ale'
     -- Прозрачность
     use {'xiyaowong/transparent.nvim'}
+
+if vim.fn.has('win32') == 1 then
+  vim.cmd([[
+  augroup PackerCompile
+    autocmd!
+    autocmd BufWritePost plugins.lua PackerCompile
+  augroup END
+  ]])
+end
+
 end)
